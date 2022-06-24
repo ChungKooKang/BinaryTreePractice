@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <queue>
+#include <stack>
 
 namespace myTree
 {
@@ -37,7 +39,7 @@ namespace myTree
 
 		Node* CreateNode(int data)
 		{
-			new Node(data, nullptr, nullptr);
+			return new Node(data, nullptr, nullptr);
 		}
 
 		Node* InsertLeft(Node* pParent, int data)
@@ -53,6 +55,60 @@ namespace myTree
 
 			return pParent->mpRight;
 		}
+
+		void Visit(Node* node)
+		{
+			std::cout << node->mData << " -> ";
+		}
+
+		void BreadthFirst()
+		{
+			std::queue<Node*> q;
+
+			q.push(mpRoot);
+
+			while (!q.empty())
+			{
+				auto pNode = q.front();
+				Visit(pNode);
+				q.pop();
+
+				if (pNode->mpLeft != nullptr)
+				{
+					q.push(pNode->mpLeft);
+
+				}
+				if (pNode->mpRight != nullptr)
+				{
+					q.push(pNode->mpRight);
+				}
+			}
+		}
+
+		void DepthFirst()
+		{
+			std::stack<Node*> s;
+
+			s.push(mpRoot);
+
+			while (!s.empty())
+			{
+				auto pNode = s.top();
+				Visit(pNode);
+				s.pop();
+				
+				if (pNode->mpRight != nullptr)
+				{
+					s.push(pNode->mpRight);
+				}
+
+				if (pNode->mpLeft != nullptr)
+				{
+					s.push(pNode->mpLeft);
+				}
+			}
+		}
+
 	};
 
 }

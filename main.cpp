@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 
 #include "BinaryTree.h"
+
 int main()
 {
 	myTree::BinaryTree myTree;
@@ -15,5 +16,6 @@ int main()
 	pNode =	myTree.InsertRight(pRoot, 3);
 	myTree.InsertLeft(pNode, 6);
 	myTree.InsertRight(pNode, 7);
-}
 
+	myTree.DepthFirst();
+}
