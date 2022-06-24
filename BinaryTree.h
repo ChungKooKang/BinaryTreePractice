@@ -109,6 +109,37 @@ namespace myTree
 			}
 		}
 
+		void DepthFirstRecursive(Node* node)
+		{
+			auto pNode = node;
+			Visit(node);
+
+			if (pNode->mpLeft != nullptr)
+			{
+				DepthFirstRecursive(pNode->mpLeft);
+			}
+
+			if (pNode->mpRight != nullptr)
+			{
+				DepthFirstRecursive(pNode->mpRight);
+			}
+
+		}
+		
+		void DepthFirstRecursiveAnswer(Node* node)
+		{
+			// base case
+			if (node == nullptr)
+			{
+				return;
+			}
+			Visit(node);
+
+			// Recursive case
+			DepthFirstRecursiveAnswer(node->mpLeft);
+			DepthFirstRecursiveAnswer(node->mpRight);
+		}
+
 	};
 
 }

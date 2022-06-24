@@ -18,4 +18,8 @@ int main()
 	myTree.InsertRight(pNode, 7);
 
 	myTree.DepthFirst();
+	std::cout << std::endl;
+	myTree.DepthFirstRecursive(myTree.GetRoot());
+	std::cout << std::endl;
+	myTree.DepthFirstRecursiveAnswer(myTree.GetRoot());
 }
