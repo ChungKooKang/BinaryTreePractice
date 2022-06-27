@@ -16,10 +16,8 @@ int main()
 	pNode =	myTree.InsertRight(pRoot, 3);
 	myTree.InsertLeft(pNode, 6);
 	myTree.InsertRight(pNode, 7);
+	
 
-	myTree.DepthFirst();
-	std::cout << std::endl;
-	myTree.DepthFirstRecursive(myTree.GetRoot());
-	std::cout << std::endl;
-	myTree.DepthFirstRecursiveAnswer(myTree.GetRoot());
+	std::cout << myTree.Sum(myTree.GetRoot()) << std::endl
+		<< myTree.Search(myTree.GetRoot(), 10) << std::endl;
 }

@@ -155,6 +155,7 @@ namespace myTree
 			InOrder(pNode->mpRight);
 
 		}
+
 		// Post-Order
 		void PostOrder(Node* pNode)
 		{
@@ -169,6 +170,27 @@ namespace myTree
 			PostOrder(pNode->mpLeft);
 			PostOrder(pNode->mpRight);
 			Visit(pNode);
+
+		}
+		int Sum (Node* pNode)
+		{
+			if (pNode == nullptr)
+			{
+				return 0;
+			}
+
+			return pNode->mData + Sum(pNode->mpLeft) + Sum(pNode->mpRight);
+
+		}
+
+		bool Search(Node* pNode, int value)
+		{
+			if (pNode == nullptr)
+			{
+				return false;
+			}
+
+			return (pNode->mData == value) || Search(pNode->mpLeft, value) || Search(pNode->mpRight, value);
 
 		}
 	};
