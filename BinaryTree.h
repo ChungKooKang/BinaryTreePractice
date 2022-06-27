@@ -126,7 +126,7 @@ namespace myTree
 
 		}
 		
-		void DepthFirstRecursiveAnswer(Node* node)
+		void DepthFirstRecursiveAnswer(Node* node)		//PreOrder
 		{
 			// base case
 			if (node == nullptr)
@@ -140,6 +140,37 @@ namespace myTree
 			DepthFirstRecursiveAnswer(node->mpRight);
 		}
 
+		// In-Order
+		void InOrder(Node* pNode)
+		{
+			// base case
+			if (pNode == nullptr)
+			{
+				return;
+			}
+
+			// Recursive case
+			DepthFirstRecursiveAnswer(pNode->mpLeft);
+			Visit(pNode);
+			DepthFirstRecursiveAnswer(pNode->mpRight);
+
+		}
+		// Post-Order
+		void PostOrder(Node* pNode)
+		{
+
+			// base case
+			if (pNode == nullptr)
+			{
+				return;
+			}
+
+			// Recursive case
+			DepthFirstRecursiveAnswer(pNode->mpLeft);
+			DepthFirstRecursiveAnswer(pNode->mpRight);
+			Visit(pNode);
+
+		}
 	};
 
 }
