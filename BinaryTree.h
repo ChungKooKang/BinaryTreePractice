@@ -150,9 +150,9 @@ namespace myTree
 			}
 
 			// Recursive case
-			DepthFirstRecursiveAnswer(pNode->mpLeft);
+			InOrder(pNode->mpLeft);
 			Visit(pNode);
-			DepthFirstRecursiveAnswer(pNode->mpRight);
+			InOrder(pNode->mpRight);
 
 		}
 		// Post-Order
@@ -166,8 +166,8 @@ namespace myTree
 			}
 
 			// Recursive case
-			DepthFirstRecursiveAnswer(pNode->mpLeft);
-			DepthFirstRecursiveAnswer(pNode->mpRight);
+			PostOrder(pNode->mpLeft);
+			PostOrder(pNode->mpRight);
 			Visit(pNode);
 
 		}
