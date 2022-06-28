@@ -1,25 +1,15 @@
 ﻿#include <iostream>
 
 #include "BinaryTree.h"
+#include "quadtree.h"
 
 int main()
 {
-	myTree::BinaryTree myTree;
+	QuadTree qt1(Point(0,0), Point(8, 8));
 
-	auto pRoot = myTree.GetRoot();
-	pRoot->mData = 1;
+	std::unique_ptr<Node> a = std::make_unique<Node>(Point(1, 1), 1);
+	std::unique_ptr<Node> b = std::make_unique<Node>(Point(2, 2), 2);
+	std::unique_ptr<Node> c = std::make_unique<Node>(Point(3, 3), 3);
+	std::unique_ptr<Node> d = std::make_unique<Node>(Point(4, 4), 4);
 
-	auto pNode = myTree.InsertLeft(pRoot, 2);
-	myTree.InsertLeft(pNode, 4);
-	myTree.InsertRight(pNode, 5);
-
-	pNode =	myTree.InsertRight(pRoot, 3);
-	myTree.InsertLeft(pNode, 6);
-	myTree.InsertRight(pNode, 7);
-
-	myTree.DepthFirst();
-	std::cout << std::endl;
-	myTree.DepthFirstRecursive(myTree.GetRoot());
-	std::cout << std::endl;
-	myTree.DepthFirstRecursiveAnswer(myTree.GetRoot());
 }
