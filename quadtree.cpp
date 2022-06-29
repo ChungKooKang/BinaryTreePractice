@@ -13,7 +13,7 @@ QuadTree::QuadTree() :
 {
 }
 
-QuadTree::QuadTree(Point topleft, Point bottomRight) : QuadTree()
+QuadTree::QuadTree(Point topLeft, Point bottomRight) : QuadTree()
 {
 	this->topLeft = topLeft;
 	this->bottomRight = bottomRight;
@@ -91,8 +91,8 @@ void QuadTree::Insert(Node* node)
 					Point(bottomRight.x, bottomRight.y)
 					);
 
-				se->Insert(node);
 			}
+			se->Insert(node);
 		}
 
 	}
@@ -100,12 +100,69 @@ void QuadTree::Insert(Node* node)
 
 Node* QuadTree::Search(Point pt)
 {
+	// base case
+	if (!IsInBound(pt))
+	{
+		return nullptr;
+	}
 
-	return nullptr;
+	if (node != nullptr)
+	{
+		return node;
+	}
+
+	//recursive case
+	if ((topLeft.x + bottomRight.x) / 2 >= pt.x)
+	{
+		// ¼­
+		if ((topLeft.y + bottomRight.y) / 2 >= pt.y)
+		{
+			// ºÏ¼­
+			if (nw == nullptr)
+			{
+				return nullptr;
+			}
+			nw->Search(pt);
+		}
+		else
+		{
+			// ³²¼­
+			if (sw == nullptr)
+			{
+				return nullptr;
+			}
+			sw->Search(pt);
+		}
+	}
+	else
+	{
+		// µ¿
+		if ((topLeft.y + bottomRight.y) / 2 >= pt.y)
+		{
+
+			// ºÏµ¿
+			if (ne == nullptr)
+			{
+				return nullptr;
+			}
+			return ne->Search(pt);
+		}
+		else
+		{
+			// ³²µ¿
+			if (se == nullptr)
+			{
+				return nullptr;
+			}
+			return se->Search(pt);
+
+		}
+
+	}
 }
 
 bool QuadTree::IsInBound(Point pt)
 {
-
-	return false;
+	return (pt.x >= topLeft.x && pt.x <= bottomRight.x) &&
+		(pt.y >= topLeft.y && pt.y <= bottomRight.y);
 }
